@@ -510,19 +510,14 @@ console.error(err);
 res.writeHead(500);
 res.end('Internal Server Error');
 }
-});
 
-server.on('error', (error) => {
-if (error.code === 'EADDRINUSE') {
-console.error(`Порт ${PORT} уже занят.`);
-process.exit(1);
-}
-throw error;
-});
-
-server.listen(PORT, '127.0.0.1', () => {
-console.log(`Сервер запущен: http://127.0.0.1:${PORT}`);
-});
+if (require.main === module) {
+  const server = http.createServer(async (req, res) => {
+    try { await handle(req, res); }
+    catch (err) { res.writeHead(500); res.end('Error'); }
+  });
+  server.on('error', (err) => { console.error(err); process.exit(1); });
+  server.listen(8000, '127.0.0.1', () => console.log('http://127.0.0.1:8000'));
 }
 
 module.exports = { handle, readData, writeData, seedData };
