@@ -520,11 +520,4 @@ server.on('error', (error) => {
   throw error;
 });
 
-if (require.main === module) {
-  server.listen(PORT, '127.0.0.1', () => {
-    readData();
-    console.log(`Kinotower admin started: http://127.0.0.1:${PORT}`);
-  });
-}
-
 module.exports = { handle, readData, writeData, seedData };
