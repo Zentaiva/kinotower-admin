@@ -88,15 +88,14 @@ function seedData() {
   };
 }
 
+let DATA = seedData();
+
 function readData() {
-  if (!fs.existsSync(DATA_FILE)) {
-    fs.writeFileSync(DATA_FILE, JSON.stringify(seedData(), null, 2));
-  }
-  return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+  return DATA;
 }
 
 function writeData(data) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+  DATA = data;
 }
 
 function nextId(data, table) {
