@@ -500,12 +500,7 @@ async function handle(req, res) {
   return notFound(req, res);
 }
 
-const server = http.createServer((req, res) => {
-  handle(req, res).catch((error) => {
-    console.error(error);
-    send(res, 500, '<h1>500</h1><p>Ошибка сервера</p>');
-  });
-});
+module.exports = { handle };
 
 server.on('error', (error) => {
   if (error.code === 'EADDRINUSE') {
