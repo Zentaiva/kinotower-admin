@@ -1,0 +1,12 @@
+{
+  "name": "kinotower-admin",
+  "version": "1.0.0",
+  "description": "Kinotower admin practice application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
